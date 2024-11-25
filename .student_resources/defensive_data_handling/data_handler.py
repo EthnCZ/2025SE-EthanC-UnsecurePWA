@@ -96,12 +96,12 @@ def validate_number(number: str) -> bool:
 def salt_and_hash(password: str) -> bytes:
     return  # to be implemented
 
-def mycheck_ps(password: string) -> bool:
+def mycheck_ps(password: str) -> bool:
     if len(password) < 9 or len(password) > 12:
         return False # 9 - 12 character length for password
-    if not password.countOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0) > 3: 
+    if not re.search(r"[0-9]", password):
         return False # checks for No. of numbers is greater than 3
-    if not password.countOf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z) > 4: 
+    if not re.search(r"[a-z]", password) and re.search(r"[A-Z]", password): 
         return False #checks for number of letters greater than 4
     if not password.isalnum():
         return False # only alphanumerical accepted
